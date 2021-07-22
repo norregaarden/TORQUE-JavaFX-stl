@@ -8,16 +8,14 @@ import java.nio.file.Paths;
 import static com.perunlabs.jsolid.JSolid.*;
 
 public class JSolidTORQUE {
-    public static void stlMake(String stlPathString) {
-        double outer_diameter = 200.0;
+    public static void stlMake(String stlPathString, double outer_diameter) {
+        //double outer_diameter = 200.0;
         double outer_width = 15.0;
         double spoke_width = 10.0;
         double inner_diameter = 20.0;
         int number_of_spokes = 5;
         double thickness = 33.0;
 
-        //Path path = Paths.get("/Users/norregaarden/Documents/GitHub/torque-java-stl/hej.stl");
-        //Path path = Paths.get("/Users/norregaarden/Documents/GitHub/torque-java-stl/hej.stl");
         double precision = 0.01;
 
         double outer_radius = outer_diameter / 2;
@@ -25,7 +23,6 @@ public class JSolidTORQUE {
         double spoke_length = outer_radius - outer_width - inner_radius;
         double spoke_round_radius = outer_radius / 42;
 
-        //System.out.println("Hello, World!");
         config().setCircleToPolygonPrecision(precision);
 
         Solid outerRing = cylinder(outer_radius, thickness)
