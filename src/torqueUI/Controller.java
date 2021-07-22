@@ -1,4 +1,4 @@
-package sample;
+package torqueUI;
 
 public class Controller {
 }

@@ -1,4 +1,4 @@
-package sample;
+package torqueUI;
 
 import com.perunlabs.jsolid.d3.Solid;
 
@@ -8,15 +8,15 @@ import java.nio.file.Paths;
 import static com.perunlabs.jsolid.JSolid.*;
 
 public class JSolidTORQUE {
-    public static void stlMake(String stlPathString, double outer_diameter) {
-        //double outer_diameter = 200.0;
-        double outer_width = 15.0;
-        double spoke_width = 10.0;
-        double inner_diameter = 20.0;
-        int number_of_spokes = 5;
-        double thickness = 33.0;
-
-        double precision = 0.01;
+    public static void stlMake(String stlPathString,
+                               double outer_diameter,
+                               double outer_width,
+                               double spoke_width,
+                               double inner_diameter,
+                               int number_of_spokes,
+                               double thickness,
+                               double precision
+    ) {
 
         double outer_radius = outer_diameter / 2;
         double inner_radius = inner_diameter / 2;

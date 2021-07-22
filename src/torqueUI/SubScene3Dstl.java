@@ -1,4 +1,4 @@
-package sample;
+package torqueUI;
 
 import com.interactivemesh.jfx.importer.ImportException;
 import com.interactivemesh.jfx.importer.stl.StlMeshImporter;

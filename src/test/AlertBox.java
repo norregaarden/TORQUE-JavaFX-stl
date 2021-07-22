@@ -1,4 +1,4 @@
-package sample;
+package test;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,11 +8,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ConfirmBox {
+public class AlertBox {
 
-    static boolean answer;
-
-    public static boolean display(String title, String message) {
+    public static void display(String title, String message) {
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -20,29 +18,15 @@ public class ConfirmBox {
         window.setMinWidth(250);
 
         Label label = new Label(message);
-
-        Button yesButton = new Button
-                ("OK");
-        yesButton.setOnAction(e -> {
-            answer = true;
-            window.close();
-        });
-
-        Button closeButton = new Button
-                ("Cancel");
-        closeButton.setOnAction(e -> {
-            answer = false;
-            window.close();
-        });
+        Button closeButton = new Button("Close popup");
+        closeButton.setOnAction(e -> window.close());
 
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(label, yesButton, closeButton);
+        layout.getChildren().addAll(label, closeButton);
         layout.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
         window.showAndWait(); // wait for close
-
-        return answer;
     }
 }

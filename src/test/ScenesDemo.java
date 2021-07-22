@@ -1,4 +1,4 @@
-package sample;
+package test;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -6,6 +6,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+/*        Button scenesDemoButton = new Button
+                ("ScenesDemo");
+        scenesDemoButton.setOnAction(event -> {
+            ScenesDemo.display();
+        });
+
+        StackPane layout = new StackPane();
+        layout.getChildren().add(scenesDemoButton);
+        scene = new Scene(layout, 800, 600);*/
 
 public class ScenesDemo {
 
