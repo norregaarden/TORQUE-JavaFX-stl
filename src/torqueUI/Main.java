@@ -39,11 +39,11 @@ public class Main extends Application {
     TextField spoke_width_field;
     private double spoke_width = 10;
     TextField inner_diameter_field;
-    private double inner_diameter = 20;
+    private double inner_diameter = 30;
     TextField number_of_spokes_field;
     private int number_of_spokes = 5;
     TextField thickness_field;
-    private double thickness = 33;
+    private double thickness = 20;
     TextField precision_field;
     private double precision = 0.1;
 
