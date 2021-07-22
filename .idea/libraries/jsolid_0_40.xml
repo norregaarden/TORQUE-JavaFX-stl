@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jsolid-0.40">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jsolid-0.40.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/jsolid-0.40.jar!/" />
+    </SOURCES>
+  </library>
+</component>
