@@ -14,8 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import test.ConfirmBox;
+
+import java.io.File;
 
 public class Main extends Application {
 
@@ -34,18 +37,31 @@ public class Main extends Application {
 
     TextField outer_diameter_field;
     private double outer_diameter = 200;
+
     TextField outer_width_field;
     private double outer_width = 15;
+
     TextField spoke_width_field;
     private double spoke_width = 10;
+
     TextField inner_diameter_field;
     private double inner_diameter = 30;
+
     TextField number_of_spokes_field;
     private int number_of_spokes = 5;
+
     TextField thickness_field;
     private double thickness = 20;
+
     TextField precision_field;
     private double precision = 0.1;
+
+    TextField file_dir_field;
+    String file_dir = System.getProperty("user.dir");
+
+/*    TextField file_dir_field;
+    String file_dir = System.getProperty("user.dir");*/
+
 
     private double subScene3Dsize = 600;
     SubScene subScene3Dstl;
@@ -62,29 +78,30 @@ public class Main extends Application {
     private final DoubleProperty angleY = new SimpleDoubleProperty(0);
     */
 
-    String stlPathString = "/Users/norregaarden/Documents/torque/temp.stl";
+    String stlPathString = "/Users/norregaarden/Documents/torque/temp3.stl";
+    //String stlPathString = "C:\\Users\\soere\\Google Drive\\PROJECTS\\NAVSEA Handwheel\\";
 
     public void generateTORQUE() {
         double outer_diameter = inputDouble(outer_diameter_field, this.outer_diameter);
-        System.out.println("outer_diameter " + outer_diameter);
+        //System.out.println("outer_diameter " + outer_diameter);
 
         double outer_width = inputDouble(outer_width_field, this.outer_width);
-        System.out.println("outer_width " + outer_width);
+        //System.out.println("outer_width " + outer_width);
 
         double spoke_width = inputDouble(spoke_width_field, this.spoke_width);
-        System.out.println("outer_width " + spoke_width);
+        //System.out.println("outer_width " + spoke_width);
 
         double inner_diameter = inputDouble(inner_diameter_field, this.inner_diameter);
-        System.out.println("outer_width " + inner_diameter);
+        //System.out.println("outer_width " + inner_diameter);
 
         int number_of_spokes = inputInt(number_of_spokes_field, this.number_of_spokes);
-        System.out.println("outer_width " + number_of_spokes);
+        //System.out.println("outer_width " + number_of_spokes);
 
         double thickness = inputDouble(thickness_field, this.thickness);
-        System.out.println("outer_width " + thickness);
+        //System.out.println("outer_width " + thickness);
 
         double precision = inputDouble(precision_field, this.precision);
-        System.out.println("outer_width " + precision);
+        //System.out.println("outer_width " + precision);
 
         JSolidTORQUE.stlMake(stlPathString,
                 outer_diameter,
@@ -208,6 +225,14 @@ public class Main extends Application {
         GridPane.setConstraints(precision_field, 1, row);
         row++;
 
+        Label file_dir_label = new Label("");
+
+/*        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Choose file directory");
+        File defaultDirectory = new File();
+        chooser.setInitialDirectory(defaultDirectory);
+        File selectedDirectory = chooser.showDialog(primaryStage);*/
+
         Button generate_button = new Button
                 ("Generate");
         GridPane.setConstraints(generate_button, 1, row+3);
@@ -242,6 +267,7 @@ public class Main extends Application {
         generateTORQUE();
 
         scene = new Scene(layout, 1024, 768);
+        layout.requestFocus();
         window.setScene(scene);
         window.show();
     }

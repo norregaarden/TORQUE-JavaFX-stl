@@ -3,6 +3,7 @@ package torqueUI;
 import com.interactivemesh.jfx.importer.ImportException;
 import com.interactivemesh.jfx.importer.stl.StlMeshImporter;
 import javafx.scene.Camera;
+import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.SubScene;
 import javafx.scene.layout.StackPane;
@@ -33,15 +34,16 @@ public class SubScene3Dstl {
         //meshView.setTranslateZ(-500);
         //root.getChildren().add(meshView);
 
-        StackPane threeDee = new StackPane();
+        //StackPane threeDee = new StackPane();
+        Group threeDee = new Group();
         //threeDee.getChildren().addAll(meshView, new Label("center"));
         threeDee.getChildren().addAll(meshView);
         SubScene subScene3d = new SubScene(threeDee, size, size);
         subScene3d.setFill(Color.SILVER);
         Camera camera = new PerspectiveCamera();
         subScene3d.setCamera(camera);
-        //camera.translateXProperty().set(100);
-        //camera.translateYProperty().set(100);
+        camera.translateXProperty().set(-size/2);
+        camera.translateYProperty().set(-size/2);
         camera.translateZProperty().set(cameraZ);
 
         return subScene3d;

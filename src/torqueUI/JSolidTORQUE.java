@@ -44,7 +44,7 @@ public class JSolidTORQUE {
 
         double spoke_length = sqrt(pow((outer_radius-outer_width/1.1), 2) - pow((spoke_width/2), 2));
 
-        Solid stokes = cuboid(spoke_length, spoke_width, thickness*2)
+        Solid stokes = cuboid(spoke_length, spoke_width, thickness)
                 //.cornerR(x(), spoke_round_radius)
                 .moveBy(vx((spoke_length/2)))
                 .clone(number_of_spokes, (i, s) -> s.rotate(z(), degrees(i * (360.0/(Double.valueOf(number_of_spokes))))));
