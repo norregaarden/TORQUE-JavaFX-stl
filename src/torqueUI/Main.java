@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -36,28 +37,34 @@ public class Main extends Application {
     }
 
     TextField outer_diameter_field;
-    private double outer_diameter = 200;
+    private double outer_diameter = 100;
 
     TextField outer_width_field;
-    private double outer_width = 15;
+    private double outer_width = 10;
 
     TextField spoke_width_field;
-    private double spoke_width = 10;
+    private double spoke_width = 5;
 
     TextField inner_diameter_field;
     private double inner_diameter = 30;
 
     TextField number_of_spokes_field;
-    private int number_of_spokes = 5;
+    private int number_of_spokes = 6;
 
     TextField thickness_field;
-    private double thickness = 20;
+    private double thickness = 11;
 
     TextField precision_field;
-    private double precision = 0.1;
+    private double precision = 0.004;
 
     TextField file_dir_field;
     String file_dir = System.getProperty("user.dir");
+
+    TextField file_name_field;
+    String file_name = "temp.stl";
+
+    String error_string = "";
+    Label error_label;
 
 /*    TextField file_dir_field;
     String file_dir = System.getProperty("user.dir");*/
@@ -78,8 +85,9 @@ public class Main extends Application {
     private final DoubleProperty angleY = new SimpleDoubleProperty(0);
     */
 
-    String stlPathString = "/Users/norregaarden/Documents/torque/temp3.stl";
+    String stlPathString;
     //String stlPathString = "C:\\Users\\soere\\Google Drive\\PROJECTS\\NAVSEA Handwheel\\";
+    //String stlPathString = "C:\\temp.stl";
 
     public void generateTORQUE() {
         double outer_diameter = inputDouble(outer_diameter_field, this.outer_diameter);
@@ -103,7 +111,14 @@ public class Main extends Application {
         double precision = inputDouble(precision_field, this.precision);
         //System.out.println("outer_width " + precision);
 
-        JSolidTORQUE.stlMake(stlPathString,
+        //String pathString = "";
+        if (file_dir.contains("\\")) {
+            stlPathString = file_dir_field.getText() + "\\" + file_name_field.getText();
+        } else {
+            stlPathString = file_dir_field.getText() + "/" + file_name_field.getText();
+        }
+
+        error_string = JSolidTORQUE.stlMake(stlPathString,
                 outer_diameter,
                 outer_width,
                 spoke_width,
@@ -112,7 +127,10 @@ public class Main extends Application {
                 thickness,
                 precision);
 
-        layout.setCenter(SubScene3Dstl.display(stlPathString, -10, subScene3Dsize));
+        error_label.setText(error_string);
+
+        SubScene3Dstl ss3d = new SubScene3Dstl();
+        layout.setCenter(ss3d.display(stlPathString, -321, subScene3Dsize));
     }
 
     private double inputDouble(TextField input, double defaultValue) {
@@ -153,6 +171,9 @@ public class Main extends Application {
         Button top1 = new Button("top");
         topMenu.getChildren().addAll(top1);*/
 
+        ////
+        // MAIN FORM (left)
+        ////
         int row = 1;
 
         Label heading = new Label
@@ -225,8 +246,6 @@ public class Main extends Application {
         GridPane.setConstraints(precision_field, 1, row);
         row++;
 
-        Label file_dir_label = new Label("");
-
 /*        DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle("Choose file directory");
         File defaultDirectory = new File();
@@ -238,10 +257,13 @@ public class Main extends Application {
         GridPane.setConstraints(generate_button, 1, row+3);
         generate_button.setOnAction(e -> generateTORQUE());
 
+        error_label = new Label("");
+        GridPane.setConstraints(error_label, 0, row+5, 2, 2);
+        error_label.setTextFill(Color.DARKRED);
+
         GridPane mainForm = new GridPane();
         mainForm.setVgap(10);
         mainForm.setHgap(20);
-        mainForm.setPadding(new Insets(40, 40, 40, 40));
         mainForm.getChildren().addAll(
                 heading,
                 subtext,
@@ -259,11 +281,48 @@ public class Main extends Application {
                 thickness_field,
                 precision_label,
                 precision_field,
-                generate_button
+                generate_button,
+                error_label
         );
 
+
+
+        ////
+        // BOTTOM
+        ////
+        GridPane bottomForm = new GridPane();
+        bottomForm.setPadding(new Insets(30, 0, 0, 0));
+
+        Label file_dir_label = new Label("File directory: ");
+        file_dir_field = new TextField(file_dir);
+        file_dir_field.setMaxWidth(400);
+        bottomForm.setConstraints(file_dir_label, 1, 0, 2, 1);
+        bottomForm.setConstraints(file_dir_field, 3, 0, 8, 1);
+
+        Label spacer = new Label("");
+        spacer.setPadding(new Insets(0, 40, 0, 40));
+        bottomForm.setConstraints(spacer, 11, 0, 2, 1);
+
+        Label file_name_label = new Label("File name: ");
+        file_name_field = new TextField(file_name);
+        bottomForm.setConstraints(file_name_label, 13, 0, 2, 1);
+        bottomForm.setConstraints(file_name_field, 15, 0, 4, 1);
+
+        bottomForm.setVgap(10);
+        bottomForm.setHgap(20);
+        bottomForm.getChildren().addAll(
+                file_dir_label,
+                file_dir_field,
+                file_name_label,
+                file_name_field
+        );
+
+
+
         layout = new BorderPane();
+        layout.setPadding(new Insets(40, 0, 40, 40));
         layout.setLeft(mainForm);
+        layout.setBottom(bottomForm);
         generateTORQUE();
 
         scene = new Scene(layout, 1024, 768);

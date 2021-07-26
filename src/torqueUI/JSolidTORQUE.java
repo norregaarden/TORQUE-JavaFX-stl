@@ -10,7 +10,7 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 public class JSolidTORQUE {
-    public static void stlMake(String stlPathString,
+    public static String stlMake(String stlPathString,
                                double outer_diameter,
                                double outer_width,
                                double spoke_width,
@@ -57,9 +57,11 @@ public class JSolidTORQUE {
         Path stlPath = Paths.get(stlPathString);
         try {
             com.perunlabs.jsolid.d3.Stl.toStl(torque, stlPath);
+            return "";
         }
         catch (Exception e) {
             System.out.println("cannot generate stl");
+            return "Cannot generate stl. Please run with administrator rights.";
         }
 
     }
