@@ -14,7 +14,7 @@ public class JSolidTORQUE {
                                double outer_diameter,
                                double outer_width,
                                double spoke_width,
-                               double inner_diameter,
+                               double inner_radius,
                                int number_of_spokes,
                                double thickness,
                                double precision
@@ -23,7 +23,7 @@ public class JSolidTORQUE {
         config().setCircleToPolygonPrecision(precision);
 
         double outer_radius = outer_diameter / 2;
-        double inner_radius = inner_diameter / 2;
+        //double inner_radius = inner_radius / 2;
         double spoke_round_radius = outer_radius / 42;
 
         Solid outerRing = cylinder(outer_radius, thickness)

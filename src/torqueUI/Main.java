@@ -37,22 +37,22 @@ public class Main extends Application {
     }
 
     TextField outer_diameter_field;
-    private double outer_diameter = 100;
+    private double outer_diameter = 4.984;
 
     TextField outer_width_field;
-    private double outer_width = 10;
+    private double outer_width = 0.561;
 
     TextField spoke_width_field;
-    private double spoke_width = 5;
+    private double spoke_width = 0.443;
 
-    TextField inner_diameter_field;
-    private double inner_diameter = 30;
+    TextField inner_radius_field;
+    private double inner_radius = 0.586;
 
     TextField number_of_spokes_field;
-    private int number_of_spokes = 6;
+    private int number_of_spokes = 4;
 
     TextField thickness_field;
-    private double thickness = 11;
+    private double thickness = 0.560;
 
     TextField precision_field;
     private double precision = 0.004;
@@ -61,7 +61,7 @@ public class Main extends Application {
     String file_dir = System.getProperty("user.dir");
 
     TextField file_name_field;
-    String file_name = "temp.stl";
+    String file_name = "test.stl";
 
     String error_string = "";
     Label error_label;
@@ -99,8 +99,8 @@ public class Main extends Application {
         double spoke_width = inputDouble(spoke_width_field, this.spoke_width);
         //System.out.println("outer_width " + spoke_width);
 
-        double inner_diameter = inputDouble(inner_diameter_field, this.inner_diameter);
-        //System.out.println("outer_width " + inner_diameter);
+        double inner_radius = inputDouble(inner_radius_field, this.inner_radius);
+        //System.out.println("outer_width " + inner_radius);
 
         int number_of_spokes = inputInt(number_of_spokes_field, this.number_of_spokes);
         //System.out.println("outer_width " + number_of_spokes);
@@ -122,7 +122,7 @@ public class Main extends Application {
                 outer_diameter,
                 outer_width,
                 spoke_width,
-                inner_diameter,
+                inner_radius,
                 number_of_spokes,
                 thickness,
                 precision);
@@ -130,7 +130,7 @@ public class Main extends Application {
         error_label.setText(error_string);
 
         SubScene3Dstl ss3d = new SubScene3Dstl();
-        layout.setCenter(ss3d.display(stlPathString, -321, subScene3Dsize));
+        layout.setCenter(ss3d.display(stlPathString, -outer_diameter*3, subScene3Dsize));
     }
 
     private double inputDouble(TextField input, double defaultValue) {
@@ -191,7 +191,7 @@ public class Main extends Application {
         row++;
 
         Label outer_diameter_label = new Label
-                ("Outer diameter");
+                ("Outer Race Diameter [in]");
         GridPane.setConstraints(outer_diameter_label, 0, row);
         outer_diameter_field = new TextField();
         outer_diameter_field.setText(String.valueOf(outer_diameter));
@@ -199,7 +199,7 @@ public class Main extends Application {
         row++;
 
         Label outer_width_label = new Label
-                ("Outer width");
+                ("Outer Race Width [in]");
         GridPane.setConstraints(outer_width_label, 0, row);
         outer_width_field = new TextField();
         outer_width_field.setText(String.valueOf(outer_width));
@@ -207,23 +207,23 @@ public class Main extends Application {
         row++;
 
         Label spoke_width_label = new Label
-                ("Spoke width");
+                ("Spoke Width [in]");
         GridPane.setConstraints(spoke_width_label, 0, row);
         spoke_width_field = new TextField();
         spoke_width_field.setText(String.valueOf(spoke_width));
         GridPane.setConstraints(spoke_width_field, 1, row);
         row++;
 
-        Label inner_diameter_label = new Label
-                ("Inner diameter");
-        GridPane.setConstraints(inner_diameter_label, 0, row);
-        inner_diameter_field = new TextField();
-        inner_diameter_field.setText(String.valueOf(inner_diameter));
-        GridPane.setConstraints(inner_diameter_field, 1, row);
+        Label inner_radius_label = new Label
+                ("Inner Race Radius [in]");
+        GridPane.setConstraints(inner_radius_label, 0, row);
+        inner_radius_field = new TextField();
+        inner_radius_field.setText(String.valueOf(inner_radius));
+        GridPane.setConstraints(inner_radius_field, 1, row);
         row++;
 
         Label number_of_spokes_label = new Label
-                ("Number of spokes");
+                ("No. of Spokes");
         GridPane.setConstraints(number_of_spokes_label, 0, row);
         number_of_spokes_field = new TextField();
         number_of_spokes_field.setText(String.valueOf(number_of_spokes));
@@ -231,7 +231,7 @@ public class Main extends Application {
         row++;
 
         Label thickness_label = new Label
-                ("Thickness");
+                ("Spoke Thickness [in]");
         GridPane.setConstraints(thickness_label, 0, row);
         thickness_field = new TextField();
         thickness_field.setText(String.valueOf(thickness));
@@ -273,8 +273,8 @@ public class Main extends Application {
                 outer_width_field,
                 spoke_width_label,
                 spoke_width_field,
-                inner_diameter_label,
-                inner_diameter_field,
+                inner_radius_label,
+                inner_radius_field,
                 number_of_spokes_label,
                 number_of_spokes_field,
                 thickness_label,

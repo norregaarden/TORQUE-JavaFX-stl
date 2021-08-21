@@ -74,6 +74,7 @@ public class SubScene3Dstl {
         ////
         GridPane controls3d = new GridPane();
         controls3d.setPadding(new Insets(0, 0, 0, 40));
+        controls3d.setAlignment(Pos.CENTER);
 
         Button zoomOut = new Button
                 ("-");
