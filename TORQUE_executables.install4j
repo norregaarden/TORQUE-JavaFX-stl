@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="9.0.4" transformSequenceNumber="9">
   <directoryPresets config="/Users/norregaarden/Documents/GitHub/TORQUE-JavaFX-stl/out/artifacts/TORQUE_JavaFX_stl_jar/TORQUE-JavaFX-stl.jar" />
-  <application name="TORQUE handwheel stl" applicationId="9249-5525-6328-5481" mediaDir="/Users/norregaarden/Documents/GitHub/TORQUE-JavaFX-stl/dist" shortName="torque" publisher="TORQUE" version="1.0.0" macVolumeId="3e88e27de934306e">
+  <application name="TORQUE handwheel stl" applicationId="9249-5525-6328-5481" mediaDir="/Users/norregaarden/Documents/GitHub/TORQUE-JavaFX-stl/dist" shortName="torque" publisher="TORQUE" version="1.0.1" macVolumeId="3e88e27de934306e">
     <codeSigning windowsEnabled="true" windowsPkcs12File="/Users/norregaarden/Documents/GitHub/TORQUE-JavaFX-stl/openssl/keyStore.pfx" />
     <jreBundles jdkProviderId="Liberica" release="16/16+36">
       <modules>
